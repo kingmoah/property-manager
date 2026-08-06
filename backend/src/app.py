@@ -1,5 +1,10 @@
 from flask import Flask
 
+from config import Config
+from database import initialize_database
+
+initialize_database(Config.DATABASE_URL)
+
 app = Flask(__name__)
 
 @app.route("/health")
