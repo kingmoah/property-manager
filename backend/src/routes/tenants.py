@@ -1,13 +1,15 @@
 from flask import Blueprint
 from flask import request
 
-from container import tenant_service
+from container import container
 
 tenant_bp = Blueprint(
     "tenants",
     __name__,
     url_prefix="/api/tenants"
 )
+
+tenant_service = container.tenant_service
 
 
 @tenant_bp.get("/")

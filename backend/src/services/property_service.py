@@ -1,3 +1,6 @@
+from models.property import Property
+
+
 class PropertyService:
 
     def __init__(self, repository):
@@ -6,21 +9,47 @@ class PropertyService:
     def get_all_properties(self):
         return self._repository.get_all()
 
-    def create_property(self, property):
+    def get_property(self, property_id):
+        return self._repository.get_by_id(property_id)
+
+    def create_property(
+        self,
+        name,
+        address,
+        city,
+        province,
+        postal_code
+    ):
+
+        property = Property(
+            0,
+            name,
+            address,
+            city,
+            province,
+            postal_code
+        )
+
         return self._repository.create(property)
 
-    def update_tenant(
+    def update_property(
         self,
-        tenant_id,
-        first_name=None,
-        last_name=None,
-        phone_number=None,
-        email=None
+        property_id,
+        name=None,
+        address=None,
+        city=None,
+        province=None,
+        postal_code=None
     ):
+
         return self._repository.update(
-            tenant_id,
-            first_name,
-            last_name,
-            phone_number,
-            email
+            property_id,
+            name,
+            address,
+            city,
+            province,
+            postal_code
         )
+
+    def delete_property(self, property_id):
+        return self._repository.delete(property_id)
